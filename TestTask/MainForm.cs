@@ -70,7 +70,6 @@ namespace TestTask
             else
             {
                 dtOrdersList.Rows.Clear();
-
                 if (orderList.Count != 0)
                 {
                     foreach (var order in orderList)
