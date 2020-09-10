@@ -57,6 +57,7 @@
             this.MenuName,
             this.OrderDetails});
             this.dtOrdersList.Location = new System.Drawing.Point(13, 12);
+            this.dtOrdersList.MultiSelect = false;
             this.dtOrdersList.Name = "dtOrdersList";
             this.dtOrdersList.ReadOnly = true;
             this.dtOrdersList.RowHeadersVisible = false;

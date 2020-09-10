@@ -32,13 +32,13 @@
             this.menuName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbMenuForm = new System.Windows.Forms.GroupBox();
+            this.btnClearForm = new System.Windows.Forms.Button();
             this.btnDeleteMenu = new System.Windows.Forms.Button();
             this.btnSaveMenu = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbMenuDetails = new System.Windows.Forms.TextBox();
             this.tbMenuName = new System.Windows.Forms.TextBox();
-            this.btnClearForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtMenuList)).BeginInit();
             this.gbMenuForm.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +52,7 @@
             this.menuName,
             this.Details});
             this.dtMenuList.Location = new System.Drawing.Point(12, 12);
+            this.dtMenuList.MultiSelect = false;
             this.dtMenuList.Name = "dtMenuList";
             this.dtMenuList.ReadOnly = true;
             this.dtMenuList.RowHeadersVisible = false;
@@ -90,6 +91,18 @@
             this.gbMenuForm.TabIndex = 1;
             this.gbMenuForm.TabStop = false;
             this.gbMenuForm.Text = "Меню";
+            // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearForm.Location = new System.Drawing.Point(74, 234);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(102, 39);
+            this.btnClearForm.TabIndex = 6;
+            this.btnClearForm.Text = "Очистить форму";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // btnDeleteMenu
             // 
@@ -150,18 +163,6 @@
             this.tbMenuName.Size = new System.Drawing.Size(392, 20);
             this.tbMenuName.TabIndex = 0;
             // 
-            // btnClearForm
-            // 
-            this.btnClearForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearForm.Location = new System.Drawing.Point(74, 234);
-            this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(102, 39);
-            this.btnClearForm.TabIndex = 6;
-            this.btnClearForm.Text = "Очистить форму";
-            this.btnClearForm.UseVisualStyleBackColor = true;
-            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
-            // 
             // MenuList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +175,6 @@
             this.Name = "MenuList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
-            this.Load += new System.EventHandler(this.MenuList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtMenuList)).EndInit();
             this.gbMenuForm.ResumeLayout(false);
             this.gbMenuForm.PerformLayout();

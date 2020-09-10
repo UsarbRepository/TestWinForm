@@ -93,7 +93,7 @@ namespace TestTask
         private void MainForm_Activated(object sender, EventArgs e)
         {
             progressBar1.Visible = true;
-            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.Style = ProgressBarStyle.Blocks;
             Thread loading = new Thread(new ThreadStart(GetListOrder));
             loading.Start();
         }

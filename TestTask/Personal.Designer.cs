@@ -35,6 +35,8 @@
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClearForm = new System.Windows.Forms.Button();
+            this.btnDeletePersonal = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.btnClearForm = new System.Windows.Forms.Button();
-            this.btnDeletePersonal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtPersonalList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,7 @@
             this.Email,
             this.Address});
             this.dtPersonalList.Location = new System.Drawing.Point(12, 12);
+            this.dtPersonalList.MultiSelect = false;
             this.dtPersonalList.Name = "dtPersonalList";
             this.dtPersonalList.ReadOnly = true;
             this.dtPersonalList.RowHeadersVisible = false;
@@ -132,6 +133,30 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Сотрудник";
+            // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearForm.Location = new System.Drawing.Point(342, 133);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(102, 39);
+            this.btnClearForm.TabIndex = 12;
+            this.btnClearForm.Text = "Очистить форму";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
+            // 
+            // btnDeletePersonal
+            // 
+            this.btnDeletePersonal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePersonal.Location = new System.Drawing.Point(580, 133);
+            this.btnDeletePersonal.Name = "btnDeletePersonal";
+            this.btnDeletePersonal.Size = new System.Drawing.Size(102, 39);
+            this.btnDeletePersonal.TabIndex = 11;
+            this.btnDeletePersonal.Text = "Удалить";
+            this.btnDeletePersonal.UseVisualStyleBackColor = true;
+            this.btnDeletePersonal.Click += new System.EventHandler(this.btnDeletePersonal_Click);
             // 
             // label5
             // 
@@ -230,29 +255,6 @@
             this.tbFirstName.Size = new System.Drawing.Size(200, 20);
             this.tbFirstName.TabIndex = 0;
             // 
-            // btnClearForm
-            // 
-            this.btnClearForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearForm.Location = new System.Drawing.Point(342, 133);
-            this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(102, 39);
-            this.btnClearForm.TabIndex = 12;
-            this.btnClearForm.Text = "Очистить форму";
-            this.btnClearForm.UseVisualStyleBackColor = true;
-            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
-            // 
-            // btnDeletePersonal
-            // 
-            this.btnDeletePersonal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeletePersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeletePersonal.Location = new System.Drawing.Point(580, 133);
-            this.btnDeletePersonal.Name = "btnDeletePersonal";
-            this.btnDeletePersonal.Size = new System.Drawing.Size(102, 39);
-            this.btnDeletePersonal.TabIndex = 11;
-            this.btnDeletePersonal.Text = "Удалить";
-            this.btnDeletePersonal.UseVisualStyleBackColor = true;
-            // 
             // Personals
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,7 +265,6 @@
             this.Name = "Personals";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Сотрудники";
-            this.Load += new System.EventHandler(this.Personals_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtPersonalList)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,11 +17,28 @@ namespace TestTask
         public MenuList()
         {
             InitializeComponent();
+            dtMenuList.Visible = false;
+            Thread thread = new Thread(ThreadLoading);
+            thread.Start();
+            Thread.Sleep(1000);
+            DrawListmenuInDT();
+            thread.Abort();
+            dtMenuList.Visible = true;
+        }
+        private void ThreadLoading()
+        {
+            var formLoad = new LoadingForm();
+            formLoad.BringToFront();
+            formLoad.ShowDialog();
         }
 
         private void btnSaveMenu_Click(object sender, EventArgs e)
         {
-            ContextDataContext linq = new ContextDataContext();
+            dtMenuList.Visible = false;
+            Thread thread = new Thread(ThreadLoading);
+            thread.Start();
+            Thread.Sleep(1000);
+            ContextDataContext linq = new ContextDataContext(Connection.connection);
             if(ID == 0)
             {
                 var menu = new Menu
@@ -30,6 +48,7 @@ namespace TestTask
                 };
                 linq.Menu.InsertOnSubmit(menu);
                 linq.SubmitChanges();
+                MessageBox.Show("Меню успешно добавлено");
             }
             else
             {
@@ -40,22 +59,19 @@ namespace TestTask
                     menu.Name = tbMenuName.Text;
                     menu.Details = tbMenuDetails.Text;
                     linq.SubmitChanges();
-                   
+                    MessageBox.Show("Меню успешно изменено");
                 }
             }
+            thread.Abort();
+            dtMenuList.Visible = true;
             ResetControls();
-            DrawListmenuInDT();
-        }
-
-        private void MenuList_Load(object sender, EventArgs e)
-        {
             DrawListmenuInDT();
         }
 
         private void DrawListmenuInDT()
         {
             dtMenuList.Rows.Clear();
-            ContextDataContext linq = new ContextDataContext();
+            ContextDataContext linq = new ContextDataContext(Connection.connection);
             var listMenu = linq.Menu.ToList();
 
             foreach (var menu in listMenu)
@@ -69,39 +85,59 @@ namespace TestTask
 
         private void dtMenuList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var idMenu = Convert.ToInt16(dtMenuList.SelectedRows[0].Tag);
-
-            if(idMenu != 0)
+            if (dtMenuList.RowCount > 0)
             {
-                ContextDataContext linq = new ContextDataContext();
-                var menu = linq.Menu.FirstOrDefault(el => el.ID == idMenu);
+                var idMenu = Convert.ToInt16(dtMenuList.SelectedRows[0].Tag);
 
-                if(menu != null)
+                if (idMenu != 0)
                 {
-                    tbMenuName.Text = menu.Name;
-                    tbMenuDetails.Text = menu.Details;
-                    ID = menu.ID;
+                    dtMenuList.Visible = false;
+                    Thread thread = new Thread(ThreadLoading);
+                    thread.Start();
+                    Thread.Sleep(1000);
+                    ContextDataContext linq = new ContextDataContext(Connection.connection);
+                    var menu = linq.Menu.FirstOrDefault(el => el.ID == idMenu);
+
+                    if (menu != null)
+                    {
+                        tbMenuName.Text = menu.Name;
+                        tbMenuDetails.Text = menu.Details;
+                        ID = menu.ID;
+                    }
+                    thread.Abort();
+                    dtMenuList.Visible = true;
                 }
             }
         }
 
         private void btnDeleteMenu_Click(object sender, EventArgs e)
         {
-            var idMenu = Convert.ToInt16(dtMenuList.SelectedRows[0].Tag);
-
-            if (idMenu != 0)
+            if(dtMenuList.RowCount > 0)
             {
-                ContextDataContext linq = new ContextDataContext();
-                var menu = linq.Menu.FirstOrDefault(el => el.ID == idMenu);
+                var idMenu = Convert.ToInt16(dtMenuList.SelectedRows[0].Tag);
 
-                if (menu != null)
+                if (idMenu != 0)
                 {
-                    linq.Menu.DeleteOnSubmit(menu);
-                    linq.SubmitChanges();
-                    DrawListmenuInDT();
-                    ResetControls();
+                    dtMenuList.Visible = false;
+                    Thread thread = new Thread(ThreadLoading);
+                    thread.Start();
+                    Thread.Sleep(1000);
+                    ContextDataContext linq = new ContextDataContext(Connection.connection);
+                    var menu = linq.Menu.FirstOrDefault(el => el.ID == idMenu);
+
+                    if (menu != null)
+                    {
+                        linq.Menu.DeleteOnSubmit(menu);
+                        linq.SubmitChanges();
+                        DrawListmenuInDT();
+                        ResetControls();
+                        MessageBox.Show("Меню успешно удалено");
+                    }
+                    thread.Abort();
+                    dtMenuList.Visible = true;
                 }
             }
+            
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)

@@ -50,6 +50,7 @@
             // 
             // cbPersonal
             // 
+            this.cbPersonal.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbPersonal.FormattingEnabled = true;
             this.cbPersonal.Location = new System.Drawing.Point(12, 25);
             this.cbPersonal.Name = "cbPersonal";
@@ -58,6 +59,7 @@
             // 
             // cbMenu
             // 
+            this.cbMenu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbMenu.FormattingEnabled = true;
             this.cbMenu.Location = new System.Drawing.Point(257, 25);
             this.cbMenu.Name = "cbMenu";
