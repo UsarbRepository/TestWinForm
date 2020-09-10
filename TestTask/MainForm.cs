@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -55,7 +56,7 @@ namespace TestTask
         }
         private void GetListOrder()
         {
-            ContextDataContext linq = new ContextDataContext();
+            ContextDataContext linq = new ContextDataContext(Connection.connection);
             List<Order> orderList = linq.Order.ToList();
             DrawListOrdersInDT(orderList);
         }

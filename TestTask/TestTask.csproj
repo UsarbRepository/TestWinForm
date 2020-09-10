@@ -81,6 +81,7 @@
     <Compile Include="AddOrder.Designer.cs">
       <DependentUpon>AddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Context.cs">
       <DependentUpon>Context.dbml</DependentUpon>
     </Compile>
